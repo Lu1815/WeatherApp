@@ -3,8 +3,6 @@ import "./App.css";
 import bg from "./img/BgLinearImage.png";
 import LocalW from "./Components/localWeatherSquare";
 import SearchBox from "./Components/searchBox";
-// import Index from './index.js'
-// import { BrowserRouter as Router, Route, Routes as Switch, Link } from 'react-router-dom';
 
 function App() {
   return (
@@ -12,11 +10,8 @@ function App() {
       <header>
         <TopMenuBar />
         <SearchBox />
-        <LocalW></LocalW>
-        {/* <Switch>
-          <Route exact path="/Components/searchBox" element={<searchBox/>}></Route>
-        </Switch> */}
       </header>
+      <LocalW />
     </div>
   );
 }
