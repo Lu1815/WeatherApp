@@ -1,22 +1,30 @@
 import Logo from '../img/SimpleWeatherLogo.png'
-// import { Link } from 'react-router-dom';
+import LocalW from '../Components/localWeatherSquare'
+import SearchBox from '../Components/searchBox'
+import { BrowserRouter as Router, Routes as Switch, Route, NavLink } from 'react-router-dom';
+import 'font-awesome/css/font-awesome.min.css';
 
-function Menu () {
+export default function Menu () {
     return (        
-        <nav>
-            <img class="logo" src={Logo} alt="logo"/>
-            <input type="checkbox" id="check"/>
-            <label for="check" class="checkbtn">
-                <i class="fas fa-bars"></i>
-            </label>
-            <ul class="options">
-                <li><a href="localWeatherSquare" class="active">Home</a></li>
-                <li><a href="searchBox">Search</a></li>
-                {/* <li><Link to="/" style={{textDecoration:"none"}}>Home</Link></li> */}
-                {/* <li><Link to="./searchBox" style={{textDecoration:"none"}}>Search</Link></li> */}
-            </ul>
-        </nav>
+        <Router>
+            <nav>
+                <img className="logo" src={Logo} alt="logo"/>
+                <input type="checkbox" id="check"/>
+                <label htmlFor="check" className="checkbtn">
+                    <i className="fas fa-bars"></i>
+                </label>
+                <ul className="options">
+                    {/* <li><a href="localWeatherSquare" className="active">Home</a></li>
+                    <li><a href="searchBox">Search</a></li> */}
+                    <li><NavLink to="/localWeatherSquare" className="btn active">Home</NavLink></li>
+                    <li><NavLink to="/searchBox" className="btn active">Search</NavLink></li>
+                </ul>
+            </nav>
+
+            <Switch>
+                <Route exact path="/localWeatherSquare" element={<LocalW/>}/>
+                <Route exact path="/searchBox" element={<SearchBox/>}/>
+            </Switch>
+        </Router>
     );
 }
-
-export default Menu;
