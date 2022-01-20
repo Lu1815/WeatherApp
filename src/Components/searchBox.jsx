@@ -61,7 +61,7 @@ function SearchBox (){
                                     'cloudy'
                                 }
                                 id="icon" 
-                                alt="cloudy" />
+                                alt="img" />
                         </div>
                         <h2>{weather.weather[0].main}</h2>
                     </div>
