@@ -25,7 +25,7 @@ function SearchBox (){
 
     return (
         <div className="searchContainer">
-
+            
             <input 
                 className="searchBox" 
                 type="text" 
@@ -66,11 +66,13 @@ function SearchBox (){
                         <h2>{weather.weather[0].main}</h2>
                     </div>
                 </div>
-            ) : (
-                    <div className="weather-container">                     
-                        <h1>City not found 😔</h1>
-                    </div>
-                )
+            ) : ((weather.cod === "404") ? 
+                <div className="weather-container">                     
+                    <h1>City/Country not found 😔</h1>
+                </div> : 
+                <div className="weather-container">                     
+                    <h1>Search a country or a city</h1>
+                </div>)
             }
 
         </div>

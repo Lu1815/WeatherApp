@@ -2,7 +2,7 @@ import Logo from '../img/SimpleWeatherLogo.png'
 import LocalW from '../Components/localWeatherSquare'
 import SearchBox from '../Components/searchBox'
 import { BrowserRouter as Router, Routes as Switch, Route, NavLink } from 'react-router-dom';
-import 'font-awesome/css/font-awesome.min.css';
+import bars from '../img/burger-bar.png'
 
 export default function Menu () {
     return (        
@@ -11,13 +11,15 @@ export default function Menu () {
                 <img className="logo" src={Logo} alt="logo"/>
                 <input type="checkbox" id="check"/>
                 <label htmlFor="check" className="checkbtn">
-                    <i className="fas fa-bars"></i>
+                    <img src={bars} alt="check" className="menubars"/>
                 </label>
                 <ul className="options">
                     {/* <li><a href="localWeatherSquare" className="active">Home</a></li>
                     <li><a href="searchBox">Search</a></li> */}
-                    <li><NavLink to="/localWeatherSquare" className="btn active">Home</NavLink></li>
-                    <li><NavLink to="/searchBox" className="btn active">Search</NavLink></li>
+                    <label htmlFor="check">
+                        <li><NavLink to="/localWeatherSquare" className="btn active">Home</NavLink></li>
+                        <li><NavLink to="/searchBox" className="btn active">Search</NavLink></li>
+                    </label>
                 </ul>
             </nav>
 

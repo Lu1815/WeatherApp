@@ -91,14 +91,19 @@ nav ul li {
     font-size: 30px;
     color: white;
     float: right;
-    line-height: 80px;
+    line-height: 95px;
     margin-right: 40px;
     cursor: pointer;
     display: none;
 }
 
 #check {
-    display: block;
+    display: none;
+}
+
+.menubars {
+    width: 40px;
+    height: 40px;
 }
 
 @media (max-width: 952px) {

@@ -18,39 +18,53 @@ function LocalWeatherSquare(){
     const location = useGeoLocation();
 
     useEffect(() => {
-        searchCurrentLocation();
-    }, []); // eslint-disable-line react-hooks/exhaustive-deps  
+        let isMounted = true;
+        searchCurrentLocation(isMounted, location.coordinates.lat, location.coordinates.lng);
+        return () => {
+            isMounted = false;
+        }
+        // setWeather({});
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-    async function searchCurrentLocation() {
-        const res = await fetch(
-            `${api.base}weather?lat=${location.coordinates.lat}&lon=${location.coordinates.lng}&units=metric&appid=${api.key}`
-        );
-        const json = await res.json();
-        setWeather(json);
-        console.log(weather);
+    async function searchCurrentLocation(isMounted, lat, lon) {
+        if(isMounted){
+            await fetch(`${api.base}weather?lat=${lat}&lon=${lon}&units=metric&appid=${api.key}`)
+            .then(res => res.json())
+            .then(result => {
+                setWeather(result);
+                console.log(weather )
+            });
+        } else {console.log("Component unmounted")}
     };
 
     return (
         <div className="weather-container" >
-            <div className="weather_square">
-                <h1>Time in {location.loaded ? `${weather.name},${weather.sys.country}`
-                : "Location data not available yet."}</h1>
-                <h3>{dateBuilder(new Date())}</h3>
-                <div id="division">
-                    <h1>{Math.round(weather.main.temp)}C°</h1>
-                    {/* <img id="icon" src={cloudy} alt="cloudy" /> */}
+            {(typeof weather.name != "undefined") ?
+                <div className="weather_square">
+                    <h1>Time in {location.loaded ? `${weather.name},{weather.sys.country}, ${location.coordinates.lat}`
+                    : "Location data not available yet."}</h1>
+                    <h3>{dateBuilder(new Date())}</h3>
+                    <div id="division">
+                        {/* <h1>{Math.round(weather.main.temp)}C°</h1> */}
+                        {/* <img id="icon" src={cloudy} alt="cloudy" /> */}
+                    </div>
+                    {/* <h2>{weather.weather[0].main}</h2> */}
+                    {/* <p>{city.coords.latitude}</p> */}
                 </div>
-                <h2>{weather.weather[0].main}</h2>
-                {/* <p>{city.coords.latitude}</p> */}
-            </div>
+            : 
+                <div className="weather_square">
+                    <h1>There was an error. Please try again later.</h1>
+                </div>
+            }
+            
 
-            <div className="along_day_weather_square">
+            {/* <div className="along_day_weather_square">
                 <h1>Time in Managua</h1>
                 <h3>A partir de las 20:26 CST</h3>
                 <h1>26°</h1>
                 <h2>Nublado</h2>
                 <p>2% de probabilidad de lluvia hasta las 21:00</p>
-            </div>
+            </div> */}
         </div>
     );  
 }
