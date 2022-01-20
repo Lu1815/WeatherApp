@@ -1,6 +1,6 @@
-import cloudy from '../img/cloudy.png'
+import dateBuilder from '../utilities/dateBuilder'
 import useGeoLocation from '../utilities/getGeolocation'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 if (navigator.geolocation) { //check if geolocation is available
     navigator.geolocation.getCurrentPosition(function(position){
@@ -8,40 +8,39 @@ if (navigator.geolocation) { //check if geolocation is available
     });   
 }
 
+const api = {
+    key: "53b5f9485d448b6f17f9cc0241e6f0ce",
+    base: "https://api.openweathermap.org/data/2.5/"
+};
+
 function LocalWeatherSquare(){
-    // const [city, setCity] = useState({});
+    const [weather, setWeather] = useState({});
     const location = useGeoLocation();
 
-    // const geoApi = {
-    //     base: "http://maps.googleapis.com/maps/api/geocode/",
-    //     latlng: {
-    //         lat: location.coordinates.lat,
-    //         lng: location.coordinates.lng,
-    //     }
-    // }
+    useEffect(() => {
+        searchCurrentLocation();
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps  
 
-    // const searchCurrentLocation = () => {
-    //     fetch(`${api.base}weather?q=${query}&units=metric&APPID=${api.key}`)
-    //     .then(res => res.json())
-    //     .then(result => {
-    //         setWeather(result);
-    //         setQuery('');
-    //         console.log(result)
-    //     });
-    // };
+    async function searchCurrentLocation() {
+        const res = await fetch(
+            `${api.base}weather?lat=${location.coordinates.lat}&lon=${location.coordinates.lng}&units=metric&appid=${api.key}`
+        );
+        const json = await res.json();
+        setWeather(json);
+        console.log(weather);
+    };
 
     return (
-        //TO USE THE searchCurrentLocation FUNCTION IN THE DIV, USE THE onLoaded ACTION EVENT
-        <div className="weather-container">
+        <div className="weather-container" >
             <div className="weather_square">
-                <h1>Time in {location.loaded ? location.coordinates.lat + "," + location.coordinates.lng
+                <h1>Time in {location.loaded ? `${weather.name},${weather.sys.country}`
                 : "Location data not available yet."}</h1>
-                <h3>A partir de las 20:26 CST</h3>
+                <h3>{dateBuilder(new Date())}</h3>
                 <div id="division">
-                    <h1>26°</h1>
-                    <img id="icon" src={cloudy} alt="cloudy" />
+                    <h1>{Math.round(weather.main.temp)}C°</h1>
+                    {/* <img id="icon" src={cloudy} alt="cloudy" /> */}
                 </div>
-                <h2>Nublado</h2>
+                <h2>{weather.weather[0].main}</h2>
                 {/* <p>{city.coords.latitude}</p> */}
             </div>
 

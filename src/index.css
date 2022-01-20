@@ -98,7 +98,7 @@ nav ul li {
 }
 
 #check {
-    display: none;
+    display: block;
 }
 
 @media (max-width: 952px) {
@@ -134,8 +134,7 @@ nav ul li {
         background-color: none;
         color: #0082e6;
     }
-    #check:checked~ul,
-    .btn:checked~ul {
+    #check:checked~ul {
         left: 0;
     }
 }
