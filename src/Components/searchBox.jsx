@@ -67,11 +67,15 @@ function SearchBox (){
                     </div>
                 </div>
             ) : ((weather.cod === "404") ? 
-                <div className="weather-container">                     
-                    <h1>City/Country not found 😔</h1>
+                <div className="weather-container">  
+                    <div className="weather_square">
+                        <h1>City/Country not found 😔</h1>
+                    </div>
                 </div> : 
-                <div className="weather-container">                     
-                    <h1>Search a country or a city</h1>
+                <div className="weather-container"> 
+                    <div className="weather_square">
+                        <h1>Search a country or a city</h1>
+                    </div>                    
                 </div>)
             }
 

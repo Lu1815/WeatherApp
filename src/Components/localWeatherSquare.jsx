@@ -19,20 +19,22 @@ function LocalWeatherSquare(){
 
     useEffect(() => {
         let isMounted = true;
-        searchCurrentLocation(isMounted, location.coordinates.lat, location.coordinates.lng);
+        searchCurrentLocation(isMounted);
         return () => {
             isMounted = false;
         }
         // setWeather({});
     }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-    async function searchCurrentLocation(isMounted, lat, lon) {
+    async function searchCurrentLocation(isMounted) {
         if(isMounted){
-            await fetch(`${api.base}weather?lat=${lat}&lon=${lon}&units=metric&appid=${api.key}`)
+            await fetch(`${api.base}weather?lat=${location.coordinates.lat}&lon=${location.coordinates.lng}&units=metric&appid=${api.key}`)
             .then(res => res.json())
-            .then(result => {
-                setWeather(result);
-                console.log(weather )
+            .then(result => {   
+                setWeather(result); 
+                console.log(weather);
+                console.log(location.coordinates.lat + "," + location.coordinates.lng);
+                console.log(isMounted);
             });
         } else {console.log("Component unmounted")}
     };

@@ -18,6 +18,8 @@ export default function Menu () {
                     <li><a href="searchBox">Search</a></li> */}
                     <label htmlFor="check">
                         <li><NavLink to="/localWeatherSquare" className="btn active">Home</NavLink></li>
+                    </label>
+                    <label htmlFor="check">
                         <li><NavLink to="/searchBox" className="btn active">Search</NavLink></li>
                     </label>
                 </ul>

@@ -144,6 +144,13 @@ nav ul li {
     }
 }
 
+@media (max-width: 400px) {
+    .logo {
+        width: 160px;
+        margin: 15px 45px 0 15px;
+    }
+}
+
 
 /* ================= WEATHER CONTAINER ================= */
 
@@ -227,6 +234,18 @@ nav ul li {
     border: none;
     align-content: center;
     padding: .5rem;
+}
+
+@media (max-width: 480px) {
+    .searchBox {
+        width: 290px;
+    }
+}
+
+@media (max-width: 280px) {
+    .searchBox {
+        width: 195px;
+    }
 }
 
 

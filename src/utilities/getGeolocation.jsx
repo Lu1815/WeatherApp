@@ -12,7 +12,7 @@ const useGeoLocation = () => {
             coordinates: {
                 lat: location.coords.latitude,
                 lng: location.coords.longitude,
-            },
+            },  
         });
     };
 
