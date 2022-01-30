@@ -98,7 +98,7 @@ nav ul li {
 }
 
 #check {
-    display: none;
+    display: block;
 }
 
 .menubars {

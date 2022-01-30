@@ -1,5 +1,6 @@
 import dateBuilder from '../utilities/dateBuilder'
 import useGeoLocation from '../utilities/getGeolocation'
+import geoLocation from 'react-hook-geolocation'
 import { useState, useEffect } from 'react'
 
 if (navigator.geolocation) { //check if geolocation is available
@@ -15,25 +16,28 @@ const api = {
 
 function LocalWeatherSquare(){
     const [weather, setWeather] = useState({});
-    const location = useGeoLocation();
+    const location = useGeoLocation(); //MY CUSTOMIZED HOOK
+    const geo = geoLocation(); //A HOOK FROM THE COMMUNITY
 
     useEffect(() => {
         let isMounted = true;
-        searchCurrentLocation(isMounted);
+        searchCurrentLocation(isMounted, geo.latitude, geo.longitude);
         return () => {
             isMounted = false;
         }
         // setWeather({});
-    }, []); // eslint-disable-line react-hooks/exhaustive-deps
+    }, [weather.name]); // eslint-disable-line react-hooks/exhaustive-deps
 
-    async function searchCurrentLocation(isMounted) {
+    async function searchCurrentLocation(isMounted, lat, lon) {
         if(isMounted){
-            await fetch(`${api.base}weather?lat=${location.coordinates.lat}&lon=${location.coordinates.lng}&units=metric&appid=${api.key}`)
+            await fetch(`${api.base}weather?lat=${lat}&lon=${lon}&units=metric&appid=${api.key}`)
             .then(res => res.json())
             .then(result => {   
                 setWeather(result); 
                 console.log(weather);
-                console.log(location.coordinates.lat + "," + location.coordinates.lng);
+                console.log(location + "This is the first hook object");
+                console.log(geo);
+                console.log(lat + "," + lon);
                 console.log(isMounted);
             });
         } else {console.log("Component unmounted")}
