@@ -67,7 +67,8 @@ nav ul li {
     text-decoration: none;
 }
 
-.btn:hover {
+.btn:hover,
+.active {
     color: #a6dcff;
 }
 
@@ -98,7 +99,7 @@ nav ul li {
 }
 
 #check {
-    display: block;
+    display: none;
 }
 
 .menubars {
@@ -137,9 +138,12 @@ nav ul li {
     a:hover,
     a.active {
         background-color: none;
-        color: #0082e6;
+        color: #a6dcff;
     }
     #check:checked~ul {
+        left: 0;
+    }
+    .show-menu {
         left: 0;
     }
 }

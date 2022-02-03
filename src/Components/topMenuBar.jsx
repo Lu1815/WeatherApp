@@ -3,6 +3,7 @@ import LocalW from '../Components/localWeatherSquare'
 import SearchBox from '../Components/searchBox'
 import { BrowserRouter as Router, Routes as Switch, Route, NavLink } from 'react-router-dom';
 import bars from '../img/burger-bar.png'
+import '../utilities/menuOptions'
 
 export default function Menu () {
     return (        
@@ -10,18 +11,12 @@ export default function Menu () {
             <nav>
                 <img className="logo" src={Logo} alt="logo"/>
                 <input type="checkbox" id="check"/>
-                <label htmlFor="check" className="checkbtn">
+                <label htmlFor="check" className="checkbtn" id="menu-toggle">
                     <img src={bars} alt="check" className="menubars"/>
                 </label>
-                <ul className="options">
-                    {/* <li><a href="localWeatherSquare" className="active">Home</a></li>
-                    <li><a href="searchBox">Search</a></li> */}
-                    <label htmlFor="check">
-                        <li><NavLink to="/localWeatherSquare" className="btn active">Home</NavLink></li>
-                    </label>
-                    <label htmlFor="check">
-                        <li><NavLink to="/searchBox" className="btn active">Search</NavLink></li>
-                    </label>
+                <ul className="options" id="nav-menu">
+                    <li><NavLink to="/localWeatherSquare" className="btn">Home</NavLink></li>
+                    <li><NavLink to="/searchBox" className="btn">Search</NavLink></li>
                 </ul>
             </nav>
 
