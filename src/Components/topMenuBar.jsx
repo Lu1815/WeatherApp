@@ -6,8 +6,9 @@ import bars from '../img/burger-bar.png'
 import '../utilities/menuOptions'
 
 export default function Menu () {
-    return (        
+    return (
         <Router>
+        <>
             <nav>
                 <img className="logo" src={Logo} alt="logo"/>
                 <input type="checkbox" id="check"/>
@@ -20,10 +21,14 @@ export default function Menu () {
                 </ul>
             </nav>
 
-            <Switch>
-                <Route exact path="/localWeatherSquare" element={<LocalW/>}/>
-                <Route exact path="/searchBox" element={<SearchBox/>}/>
-            </Switch>
+            
+          <Switch>
+              <Route exact path="/" element={<LocalW />} />
+              <Route exact path="/WeatherApp" element={<LocalW />} />
+              <Route exact path="/localWeatherSquare" element={<LocalW />} />
+              <Route exact path="/searchBox" element={<SearchBox />} />
+          </Switch>
+        </>
         </Router>
     );
 }

@@ -17,11 +17,6 @@ html {
     background-position: bottom;
 }
 
-.App {
-    height: 100%;
-    width: 100%;
-}
-
 
 /* ================= TOP MENU BAR ================= */
 
@@ -143,8 +138,9 @@ nav ul li {
     #check:checked~ul {
         left: 0;
     }
-    .show-menu {
-        left: 0;
+    .close-menu {
+        position: fixed;
+        left: -100%;
     }
 }
 

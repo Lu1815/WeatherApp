@@ -6,12 +6,12 @@ const navMenu = document.getElementById('nav-menu'),
 
 if (navToggle) {
     navToggle.addEventListener('click', () => {
-        navMenu.classList.add('show-menu');
+        navMenu.classList.remove("close-menu");
     })
 }
 
 function linkAction() {
-    navMenu.classList.remove('show-menu');
+    navMenu.classList.add("close-menu");
 }
 navBtn.forEach(n => n.addEventListener('click', linkAction));
 // }

@@ -34,7 +34,7 @@ function LocalWeatherSquare(){
             .then(res => res.json())
             .then(result => {   
                 setWeather(result);
-                console.log(location);
+                console.log(weather);
             });
         } else {console.log("Component unmounted")}
     };
